@@ -1,0 +1,1330 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.2">
+  <object class="tk.Toplevel" id="main_window">
+    <property name="geometry">1024x768</property>
+    <property name="minsize">800|600</property>
+    <property name="resizable">both</property>
+    <property name="title" translatable="yes">SAVER Antenna Testbench</property>
+    <bind sequence="&lt;Destroy&gt;" handler="callback_destroy" add="" />
+    <containerlayout manager="pack">
+      <property name="anchor">nw</property>
+    </containerlayout>
+    <child>
+      <object class="ttk.Panedwindow" id="paned_window">
+        <property name="orient">horizontal</property>
+        <layout manager="pack">
+          <property name="anchor">center</property>
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="padx">5</property>
+          <property name="pady">5</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Panedwindow.Pane" id="pane_left">
+            <property name="weight">3</property>
+            <child>
+              <object class="ttk.Notebook" id="main_notebook">
+                <property name="height">200</property>
+                <property name="padding">5</property>
+                <property name="width">800</property>
+                <layout manager="pack">
+                  <property name="anchor">center</property>
+                  <property name="expand">true</property>
+                  <property name="fill">both</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_connection">
+                    <property name="compound">top</property>
+                    <property name="padding">10</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Connection</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_connection">
+                        <property name="height">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">both</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe_device">
+                            <property name="height">200</property>
+                            <property name="text" translatable="yes">Device</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <containerlayout manager="pack">
+                              <property name="anchor">nw</property>
+                            </containerlayout>
+                            <child>
+                              <object class="ttk.Frame" id="frame_device_list">
+                                <property name="padding">5</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Combobox" id="combobox_device_list">
+                                    <property name="state">readonly</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">bottom</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_device_list_cmd">
+                                    <property name="height">200</property>
+                                    <property name="padding">5</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">w</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Button" id="button_device_list_list">
+                                        <property name="text" translatable="yes">List</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_list_device" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">w</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Button" id="button_device_list_connect">
+                                        <property name="text" translatable="yes">Connect</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_connect_device" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Button" id="button_device_list_disconnect">
+                                        <property name="text" translatable="yes">Disconnect</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_disconnect_device" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">w</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">right</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_device_status">
+                                <property name="height">200</property>
+                                <property name="padding">5</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">s</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="side">bottom</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_device_status">
+                                    <property name="text" translatable="yes">Status: </property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_device_status_text">
+                                    <property name="text" translatable="yes">Unknown</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe_property">
+                            <property name="height">200</property>
+                            <property name="text" translatable="yes">VNA Property</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="pady">5</property>
+                              <property name="side">bottom</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Treeview" id="treeview_property">
+                                <property name="selectmode">browse</property>
+                                <property name="show">headings</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">both</property>
+                                  <property name="padx">5</property>
+                                  <property name="pady">5</property>
+                                  <property name="side">top</property>
+                                </layout>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_measurement">
+                    <property name="padding">10</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Measurement</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_measurement">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">n</property>
+                          <property name="expand">true</property>
+                          <property name="fill">both</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe_measurement_sweep">
+                            <property name="height">200</property>
+                            <property name="text" translatable="yes">Sweep Plan</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="pady">5</property>
+                              <property name="side">top</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame_measurement_sweep_setup">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="pady">5</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measurement_sweep_start">
+                                    <property name="height">200</property>
+                                    <property name="padding">5</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">center</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label_measurement_sweep_start">
+                                        <property name="text" translatable="yes">Start Frequency (GHz)</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">false</property>
+                                          <property name="fill">x</property>
+                                          <property name="padx">5</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Entry" id="entry_measurement_sweep_start">
+                                        <property name="textvariable">string:sweep_start_freq_ghz</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="padx">5</property>
+                                          <property name="side">right</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measurement_sweep_stop">
+                                    <property name="height">200</property>
+                                    <property name="padding">5</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">center</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="labe_measurement_sweep_stop">
+                                        <property name="text" translatable="yes">Stop Frequency (GHz)</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">false</property>
+                                          <property name="fill">x</property>
+                                          <property name="padx">5</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Entry" id="entry_measurement_sweep_stop">
+                                        <property name="textvariable">string:sweep_stop_freq_ghz</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="padx">5</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measurement_sweep_step">
+                                    <property name="height">200</property>
+                                    <property name="padding">5</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">center</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label_measurement_num_of_pts">
+                                        <property name="text" translatable="yes">Number of Points</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">false</property>
+                                          <property name="fill">x</property>
+                                          <property name="padx">5</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Entry" id="entry__measurement_num_of_pts">
+                                        <property name="textvariable">string:sweep_n_freq</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="padx">5</property>
+                                          <property name="side">right</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measurement_sweep_cmd">
+                                    <property name="height">200</property>
+                                    <property name="padding">5</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">sw</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">5</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Button" id="button_measurement_sweep_apply">
+                                        <property name="text" translatable="yes">Apply</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_sweep" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Button" id="button_measurement_sweep_recall">
+                                        <property name="text" translatable="yes">Recall</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_recall_sweep" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Button" id="button_measurement_sweep_clear">
+                                        <property name="text" translatable="yes">Clear</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_clear_sweep" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_measurement_sweep_status">
+                                <property name="height">200</property>
+                                <property name="padding">5</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">s</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">both</property>
+                                  <property name="padx">5</property>
+                                  <property name="side">left</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_measurement_sweep_status">
+                                    <property name="text" translatable="yes">Status: </property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_measurement_sweep_text">
+                                    <property name="text" translatable="yes">Unknown</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Labelframe" id="labelframe_measurement_calibration">
+                            <property name="height">200</property>
+                            <property name="text" translatable="yes">Calibration</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="pady">5</property>
+                              <property name="side">bottom</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Frame" id="frame_measurement_calibration_folder">
+                                <property name="height">200</property>
+                                <property name="padding">5</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="padx">8</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_measruement_calibration_folder">
+                                    <property name="text" translatable="yes">Folder Path</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Entry" id="entry_measruement_calibration_folder">
+                                    <property name="text" translatable="yes">Calibration</property>
+                                    <property name="textvariable">string:cal_folder_path</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">center</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measurement_calibration_folder_cmd">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">center</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Button" id="button_measruement_calibration_folder_browse">
+                                        <property name="text" translatable="yes">Browse</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_calibration_open_folder" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">left</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Button" id="button_measruement_calibration_folder_choose">
+                                        <property name="text" translatable="yes">Apply Folder</property>
+                                        <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_calibration_choose_folder" add="" />
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="side">right</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_measurement_cal_slot">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">both</property>
+                                  <property name="padx">8</property>
+                                  <property name="pady">8</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label4">
+                                    <property name="text" translatable="yes">SOLT Standards</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">w</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="padx">8</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measruement_cal_slot_port1">
+                                    <property name="height">200</property>
+                                    <property name="relief">ridge</property>
+                                    <property name="width">100</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="padx">8</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label1">
+                                        <property name="text" translatable="yes">Port 1</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="padx">8</property>
+                                          <property name="pady">8</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame10">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame11">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_p1s">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Short</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="cal_port1_short_apply">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_p1s" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="cal_port1_short_create">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_p1s" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame8">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_p1o">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Open</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="cal_port1_open_apply">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_p1o" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="cal_port1_open_create">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_p1o" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame12">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_p1l">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Load</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="cal_port1_load_apply">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_p1l" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="cal_port1_load_create">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_p1l" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measruement_cal_slot_thru">
+                                    <property name="height">200</property>
+                                    <property name="relief">ridge</property>
+                                    <property name="width">180</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">both</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label2">
+                                        <layout manager="pack">
+                                          <property name="padx">8</property>
+                                          <property name="pady">8</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame17">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="padx">8</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame18">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_thru">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Thru</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button24">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_thru" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button25">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_thru" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_measruement_cal_slot_port2">
+                                    <property name="height">200</property>
+                                    <property name="relief">ridge</property>
+                                    <property name="width">100</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="padx">8</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Label" id="label3">
+                                        <property name="text" translatable="yes">Port 2	</property>
+                                        <layout manager="pack">
+                                          <property name="padx">8</property>
+                                          <property name="pady">8</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Frame" id="frame13">
+                                        <property name="height">200</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame15">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_p2s">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Short</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button20">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_p2s" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button21">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_p2s" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame14">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_p2o">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Open</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button18">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_p2o" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button19">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_p2o" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame16">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">false</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="cal_label_p2l">
+                                                <property name="state">disabled</property>
+                                                <property name="text" translatable="yes">Load</property>
+                                                <layout manager="pack">
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button22">
+                                                <property name="text" translatable="yes">Apply</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_p2l" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button23">
+                                                <property name="text" translatable="yes">Create</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_create_p2l" add="" />
+                                                <layout manager="pack">
+                                                  <property name="pady">8</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_measurement_cal_stat">
+                                <property name="height">200</property>
+                                <property name="padding">5</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">s</property>
+                                  <property name="expand">true</property>
+                                  <property name="fill">x</property>
+                                  <property name="padx">8</property>
+                                  <property name="side">bottom</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Label" id="label_measurement_calibration_status">
+                                    <property name="text" translatable="yes">Status: </property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">false</property>
+                                      <property name="fill">x</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Label" id="label_measurement_calibration_status_text">
+                                    <property name="text" translatable="yes">Unknown</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Frame" id="frame_measurement_cal_validate">
+                                <property name="height">200</property>
+                                <property name="width">200</property>
+                                <layout manager="pack">
+                                  <property name="anchor">n</property>
+                                  <property name="expand">false</property>
+                                  <property name="fill">y</property>
+                                  <property name="side">top</property>
+                                </layout>
+                                <child>
+                                  <object class="ttk.Button" id="frame_measurement_cal_validate_cmd">
+                                    <property name="text" translatable="yes">Validate Measurement</property>
+                                    <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_validate_cal" add="" />
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="padx">8</property>
+                                      <property name="pady">8</property>
+                                      <property name="side">right</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="ttk.Button" id="frame_measurement_cal_apply_cmd">
+                                    <property name="text" translatable="yes">Apply Calibration</property>
+                                    <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_apply_cal" add="" />
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="padx">8</property>
+                                      <property name="pady">8</property>
+                                      <property name="side">left</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Notebook.Tab" id="tab_data">
+                    <property name="padding">10</property>
+                    <property name="state">normal</property>
+                    <property name="text" translatable="yes">Data</property>
+                    <child>
+                      <object class="ttk.Frame" id="frame_data">
+                        <property name="height">200</property>
+                        <property name="width">200</property>
+                        <layout manager="pack">
+                          <property name="anchor">center</property>
+                          <property name="expand">true</property>
+                          <property name="fill">both</property>
+                          <property name="side">top</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Panedwindow" id="panedwindow_data">
+                            <property name="height">200</property>
+                            <property name="orient">vertical</property>
+                            <property name="width">200</property>
+                            <layout manager="pack">
+                              <property name="anchor">n</property>
+                              <property name="expand">true</property>
+                              <property name="fill">both</property>
+                              <property name="side">bottom</property>
+                            </layout>
+                            <child>
+                              <object class="ttk.Panedwindow.Pane" id="pane_data_up">
+                                <property name="weight">1</property>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_data_panel_up">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Labelframe" id="labelframe_data_sweep">
+                                        <property name="height">200</property>
+                                        <property name="text" translatable="yes">Sweep Control</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="pady">5</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame_data_sweep_cmd">
+                                            <property name="height">200</property>
+                                            <property name="padding">5</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="expand">true</property>
+                                              <property name="fill">x</property>
+                                              <property name="side">top</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Button" id="button_data_sweep_start">
+                                                <property name="text" translatable="yes">Start</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_sweep_start" add="" />
+                                                <layout manager="pack">
+                                                  <property name="anchor">center</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">x</property>
+                                                  <property name="side">left</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button_data_sweep_stop">
+                                                <property name="text" translatable="yes">Stop</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_sweep_stop" add="" />
+                                                <layout manager="pack">
+                                                  <property name="anchor">center</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">x</property>
+                                                  <property name="side">left</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button_data_sweep_one_shot">
+                                                <property name="text" translatable="yes">One Shot</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_sweep_oneshot" add="" />
+                                                <layout manager="pack">
+                                                  <property name="anchor">center</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">x</property>
+                                                  <property name="side">right</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Label" id="label5">
+                                            <property name="text" translatable="yes">Status: </property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="padx">8</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="ttk.Label" id="label_sweep_control">
+                                            <property name="text" translatable="yes">Sweeping Stopped</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">n</property>
+                                              <property name="side">left</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Labelframe" id="labelframe_data_sweep_meas">
+                                        <property name="height">600</property>
+                                        <property name="text" translatable="yes">Measurement Result</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">both</property>
+                                          <property name="pady">5</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame_data_sweep_meas">
+                                            <property name="height">200</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">center</property>
+                                              <property name="expand">true</property>
+                                              <property name="fill">both</property>
+                                              <property name="padx">5</property>
+                                              <property name="pady">5</property>
+                                              <property name="side">top</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Label" id="measurement_live_calc_txt">
+                                                <property name="text" translatable="yes">Live Calculation: Not Ready</property>
+                                                <layout manager="pack">
+                                                  <property name="anchor">n</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">both</property>
+                                                  <property name="side">bottom</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Frame" id="frame_live_canvas">
+                                                <property name="height">500</property>
+                                                <property name="width">200</property>
+                                                <layout manager="pack">
+                                                  <property name="anchor">n</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">both</property>
+                                                  <property name="side">top</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="ttk.Panedwindow.Pane" id="pane_data_down">
+                                <property name="weight">1</property>
+                                <child>
+                                  <object class="ttk.Frame" id="frame_data_panel_down">
+                                    <property name="height">200</property>
+                                    <property name="width">200</property>
+                                    <layout manager="pack">
+                                      <property name="anchor">n</property>
+                                      <property name="expand">true</property>
+                                      <property name="fill">both</property>
+                                      <property name="side">top</property>
+                                    </layout>
+                                    <child>
+                                      <object class="ttk.Labelframe" id="labelframe_data_sweep_record">
+                                        <property name="height">200</property>
+                                        <property name="text" translatable="yes">Data Records</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">n</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">x</property>
+                                          <property name="pady">5</property>
+                                          <property name="side">top</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Frame" id="frame_data_sweep_record_cmd">
+                                            <property name="height">200</property>
+                                            <property name="padding">5</property>
+                                            <property name="width">200</property>
+                                            <layout manager="pack">
+                                              <property name="anchor">center</property>
+                                              <property name="expand">true</property>
+                                              <property name="fill">x</property>
+                                              <property name="side">top</property>
+                                            </layout>
+                                            <child>
+                                              <object class="ttk.Button" id="button_data_sweep_clear_sel">
+                                                <property name="text" translatable="yes">Clear Selected</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_record_clear_selected" add="" />
+                                                <layout manager="pack">
+                                                  <property name="anchor">center</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">x</property>
+                                                  <property name="side">left</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="ttk.Button" id="button_data_sweep_clear_all">
+                                                <property name="text" translatable="yes">Clear All</property>
+                                                <bind sequence="&lt;ButtonRelease-1&gt;" handler="callback_record_clear_all" add="" />
+                                                <layout manager="pack">
+                                                  <property name="anchor">center</property>
+                                                  <property name="expand">true</property>
+                                                  <property name="fill">x</property>
+                                                  <property name="side">right</property>
+                                                </layout>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="ttk.Labelframe" id="labelframe_data_sweep_record_cal">
+                                        <property name="height">200</property>
+                                        <property name="text" translatable="yes">Records and Calculation</property>
+                                        <property name="width">200</property>
+                                        <layout manager="pack">
+                                          <property name="anchor">center</property>
+                                          <property name="expand">true</property>
+                                          <property name="fill">both</property>
+                                          <property name="pady">5</property>
+                                          <property name="side">bottom</property>
+                                        </layout>
+                                        <child>
+                                          <object class="ttk.Treeview" id="treeview_data_sweep_record_cal">
+                                            <property name="selectmode">extended</property>
+                                            <bind sequence="&lt;Double-1&gt;" handler="callback_double_click_list_view" add="" />
+                                            <layout manager="pack">
+                                              <property name="anchor">center</property>
+                                              <property name="expand">true</property>
+                                              <property name="fill">both</property>
+                                              <property name="padx">5</property>
+                                              <property name="pady">5</property>
+                                              <property name="side">top</property>
+                                            </layout>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Panedwindow.Pane" id="pane_right">
+            <property name="weight">1</property>
+            <child>
+              <object class="ttk.Frame" id="frame1">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="tk.Message" id="message_help">
+                    <property name="anchor">nw</property>
+                    <property name="background">#dcdad5</property>
+                    <property name="font">{Liberation Mono} 14 {}</property>
+                    <property name="pady">30</property>
+                    <property name="textvariable">string:help_text</property>
+                    <property name="width">300</property>
+                    <layout manager="pack">
+                      <property name="anchor">center</property>
+                      <property name="expand">true</property>
+                      <property name="fill">both</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
